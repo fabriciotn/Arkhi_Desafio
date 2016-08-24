@@ -50,20 +50,20 @@ public class Arkhi implements EntryPoint, IsWidget{
 		final Label labelTipo = new Label("Tipo:");
 		final Label labelCampoBD = new Label("Campo no BD:");
 		final Button sendButton = new Button("Gravar");
-		final Button botaoGerarTela = new Button("Gerar Tela");
+		final Button botaoGerarTela = new Button("Gerar Tela Dinâmica");
 		final TextBox nameField = new TextBox();
 		final TextBox rotuloField = new TextBox();
 		final RadioButton tipoFieldText = new RadioButton("grupo", "TextBox");
 		final RadioButton tipoFieldDate = new RadioButton("grupo", "DatePiker");
 		final Label errorLabel = new Label();
-		final StringComboBox comboBox = new StringComboBox();
-		comboBox.add("nome");
-		comboBox.add("telefone");
-		comboBox.add("email");
-		comboBox.add("dataNascimento");
-		comboBox.add("endereco");
-		comboBox.add("profissao");
-		comboBox.add("idade");
+		final StringComboBox campoBD = new StringComboBox();
+		campoBD.add("nome");
+		campoBD.add("telefone");
+		campoBD.add("email");
+		campoBD.add("dataNascimento");
+		campoBD.add("endereco");
+		campoBD.add("profissao");
+		campoBD.add("idade");
 
 		
 		tipoFieldText.setChecked(true);
@@ -77,13 +77,11 @@ public class Arkhi implements EntryPoint, IsWidget{
 		panel.add(tipoFieldText);
 		panel.add(tipoFieldDate);
 		panel.add(labelCampoBD);
-		panel.add(comboBox);
+		panel.add(campoBD);
 		panel.add(sendButton);
 		panel.add(botaoGerarTela);
 		panel.add(errorLabel);
 		
-		
-
 		// We can add style names to widgets
 		sendButton.addStyleName("sendButton");
 
@@ -157,14 +155,14 @@ public class Arkhi implements EntryPoint, IsWidget{
 					tipoField = Tipo.DATE.getLabel();
 				else if (tipoFieldText.getValue())
 					tipoField = Tipo.TEXT.getLabel();
-				String comboBoxText = comboBox.getText();
+				String campoDB = campoBD.getText();
 
 				if (!FieldVerifier.isValidName(nameFieldText, rotuloFieldText)) {
 					errorLabel.setText("Por favor, insira pelo menos quatro caracteres.");
 					return;
 				}
 
-				Metadado metadado = new Metadado(nameFieldText, rotuloFieldText, tipoField, comboBoxText);
+				Metadado metadado = new Metadado(nameFieldText, rotuloFieldText, tipoField, campoDB);
 
 				// Then, we send the input to the server.
 				sendButton.setEnabled(false);

@@ -41,6 +41,9 @@ public class TelaAutomatica implements EntryPoint, IsWidget {
 		final Button buttonAlterar = new Button("Alterar");
 		final Button buttonPesquisar = new Button("Pesquisar");
 		
+		/**
+		 * Busca os metadados e monta a tela dinâmica.
+		 */
 		serviceMetadado.getMetadados(0, 25, new AsyncCallback<List<Metadado>>() {
 			@Override
 			public void onSuccess(List<Metadado> result) {
